@@ -1,8 +1,8 @@
 {
   "name": "remove-all-comments",
   "displayName": "Remove All Comments",
-  "description": "🧹 A powerful extension that intelligently removes comments from your code while preserving functionality. Supports multiple languages, automatic removal on save, and custom keybindings. Perfect for cleaning up production code!",
-  "version": "1.0.2",
+  "description": "🧹 Clean up your code by removing all comments including docstrings while preserving functionality. Supports multiple languages and auto-removal on save.",
+  "version": "1.1.0",
   "publisher": "boshyxd",
   "icon": "images/icon.png",
   "repository": {
@@ -13,6 +13,7 @@
     "vscode": "^1.60.0"
   },
   "categories": [
+    "Formatters",
     "Other"
   ],
   "activationEvents": [
@@ -54,7 +55,13 @@
     "remove",
     "clean",
     "code cleanup",
-    "multi-language"
+    "multi-language",
+    "docstrings",
+    "formatter",
+    "python",
+    "javascript",
+    "lua",
+    "cpp"
   ],
   "author": "boshyxd",
   "license": "MIT",
