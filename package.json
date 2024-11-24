@@ -1,0 +1,65 @@
+{
+  "name": "remove-all-comments",
+  "displayName": "Remove All Comments",
+  "description": "Extension to remove all comments from code files",
+  "version": "1.0.1",
+  "publisher": "boshyxd",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boshyxd/remove-all-comments"
+  },
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:remove-all-comments.removeComments",
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "remove-all-comments.removeComments",
+        "title": "Remove All Comments"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "remove-all-comments.removeComments",
+        "key": "ctrl+shift+/",
+        "mac": "cmd+shift+/"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Remove All Comments",
+      "properties": {
+        "removeAllComments.removeOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Remove comments automatically when saving files"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "comments",
+    "remove",
+    "clean",
+    "code cleanup",
+    "multi-language"
+  ],
+  "author": "boshyxd",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.60.0"
+  }
+}
