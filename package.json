@@ -2,7 +2,7 @@
   "name": "remove-all-comments",
   "displayName": "Remove All Comments",
   "description": "Extension to remove all comments from code files",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "boshyxd",
   "icon": "images/icon.png",
   "repository": {
