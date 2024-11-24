@@ -2,7 +2,7 @@
   "name": "remove-all-comments",
   "displayName": "Remove All Comments",
   "description": "🧹 Clean up your code by removing all comments including docstrings while preserving functionality. Supports multiple languages and auto-removal on save.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "boshyxd",
   "icon": "images/icon.png",
   "repository": {
