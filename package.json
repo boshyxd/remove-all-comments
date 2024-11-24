@@ -1,7 +1,7 @@
 {
   "name": "remove-all-comments",
   "displayName": "Remove All Comments",
-  "description": "Extension to remove all comments from code files",
+  "description": "🧹 A powerful extension that intelligently removes comments from your code while preserving functionality. Supports multiple languages, automatic removal on save, and custom keybindings. Perfect for cleaning up production code!",
   "version": "1.0.2",
   "publisher": "boshyxd",
   "icon": "images/icon.png",
