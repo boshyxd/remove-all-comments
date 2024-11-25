@@ -1,6 +1,6 @@
 # Remove All Comments
 
-A VSCode extension that helps you clean up your code by removing all comments, including docstrings, while preserving the functionality of your code. Perfect for preparing production code or cleaning up development files.
+A [VSCode extension](https://open-vsx.org/extension/boshyxd/remove-all-comments) that helps you clean up your code by removing all comments, including docstrings, while preserving the functionality of your code. Perfect for preparing production code or cleaning up development files.
 
 ## Features
 
