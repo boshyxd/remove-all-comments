@@ -70,8 +70,11 @@ async function removeComments(text, languageId) {
         // Keep only the non-comment characters
         let result = chars.filter((char, index) => mask[index]).join('');
         
-        // Clean up multiple blank lines but preserve one blank line
-        result = result.replace(/\n\s*\n\s*\n/g, '\n\n').replace(/\s+$/, '');
+        // Keep empty lines
+        result = result.split('\n').map(line => line.trim() === '' ? '\n' : line).join('\n');
+        
+        // Only trim trailing whitespace at the end of the file
+        result = result.replace(/\s+$/, '') + '\n';
         
         return result;
     } catch (error) {
@@ -163,9 +166,8 @@ function removeCommentsRegex(text, languageId) {
                             }
                         }
                         
-                        if (processedLine.trim()) {
-                            processedLines.push(processedLine);
-                        }
+                        // Keep the line even if it's empty (preserve whitespace)
+                        processedLines.push(processedLine);
                     }
                 } else {
                     // Check for docstring end
@@ -218,19 +220,15 @@ function removeCommentsRegex(text, languageId) {
                     i++;
                 }
                 
-                if (processedLine.trim()) {
-                    processedLines.push(processedLine);
-                }
+                // Keep the line even if it's empty (preserve whitespace)
+                processedLines.push(processedLine);
             }
             
             result = processedLines.join('\n');
         }
         
-        // Clean up whitespace
-        result = result
-            .replace(/\n\s*\n\s*\n/g, '\n\n')  // Collapse multiple blank lines
-            .replace(/^\s+|\s+$/g, '')          // Trim start and end
-            + '\n';                             // Ensure single trailing newline
+        // Only trim trailing whitespace at the end of the file
+        result = result.replace(/\s+$/, '') + '\n';
         
         return result;
     } catch (error) {
@@ -263,7 +261,7 @@ function activate(context) {
     });
 
     // Register a save event handler
-    let saveDisposable = vscode.workspace.onWillSaveTextDocument(async e => {
+    let saveDisposable = vscode.workspace.onWillSaveTextDocument(e => {
         const config = vscode.workspace.getConfiguration('removeAllComments');
         const removeOnSave = config.get('removeOnSave');
         console.log('Save triggered, removeOnSave:', removeOnSave);
@@ -273,18 +271,18 @@ function activate(context) {
             const editor = vscode.window.activeTextEditor;
             
             if (editor && editor.document === document) {
-                const text = document.getText();
-                const cleaned = await removeComments(text, document.languageId);
-
-                e.waitUntil(
-                    editor.edit(editBuilder => {
+                e.waitUntil((async () => {
+                    const text = document.getText();
+                    const cleaned = await removeComments(text, document.languageId);
+                    
+                    return editor.edit(editBuilder => {
                         const entireRange = new vscode.Range(
                             document.positionAt(0),
                             document.positionAt(text.length)
                         );
                         editBuilder.replace(entireRange, cleaned);
-                    })
-                );
+                    });
+                })());
             }
         }
     });

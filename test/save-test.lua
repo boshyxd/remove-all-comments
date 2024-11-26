@@ -1,7 +1,7 @@
 -- This is a test file for the save feature
 local function testSave()
-    -- This comment should be removed on save
-    print("Hello") -- This inline comment should go away
+	-- This comment should be removed on save
+	print("Hello") -- This inline comment should go away
 end
 
 --[[
